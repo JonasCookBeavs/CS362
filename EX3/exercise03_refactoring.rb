@@ -1,3 +1,5 @@
+# Jonas Cook
+
 class IceBoxRefrigerator
 
   attr_reader :height, :width, :depth
