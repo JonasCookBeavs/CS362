@@ -1,4 +1,4 @@
-class AnimalList
+class AnimalListInterface
   
   def initialize
     raise("abstract class")
@@ -18,7 +18,8 @@ class AnimalList
 
 end
 
-class ProductionAnimalList < AnimalList
+class AnimalList < AnimalListInterface
+  
   def initialize
     sleep(3)
     @list = []
@@ -41,48 +42,50 @@ class ProductionAnimalList < AnimalList
     @list.delete(a)
     "deleted"
   end
+
+end
+
+class FakeAnimalList < AnimalListInterface
+  
+  def initialize
+    @list = []
+  end
+
+  def add_animal(a)
+    @list.append(a)
+    "ok"
+  end
+
+  def find_animal(a)
+    i = @list.find_index(a)
+    i == nil ? nil : @list[i]
+  end
+
+  def delete_animal(a)
+    @list.delete(a)
+    "deleted"
+  end
+
 end
 
 if __FILE__ == $0
   # PRODUCTION CODE:
-  aimfiz = ProductionAnimalList.new
+  aimfiz = AnimalList.new
   aimfiz.add_animal("dog");
 
-  bekdab = ProductionAnimalList.new
+  bekdab = AnimalList.new
   bekdab.add_animal("dog");
   bekdab.add_animal("cat");
   x = bekdab.find_animal("cat");
   bekdab.delete_animal("cat");
 
-  malyon = ProductionAnimalList.new
+  malyon = AnimalList.new
 
-  plugh = ProductionAnimalList.new
+  plugh = AnimalList.new
 
-  throck = ProductionAnimalList.new
+  throck = AnimalList.new
 
-  vomin = ProductionAnimalList.new
+  vomin = AnimalList.new
 
-  zemdor = ProductionAnimalList.new
-end
-
-class FakeAnimalList < AnimalList
-  def initialize
-    @list = []
-  end
-
-  def add_animal(a)
-    @list.append(a)
-    "ok"
-  end
-
-  def find_animal(a)
-    i = @list.find_index(a)
-    i == nil ? nil : @list[i]
-  end
-
-  def delete_animal(a)
-    @list.delete(a)
-    "deleted"
-  end
-  
+  zemdor = AnimalList.new
 end
